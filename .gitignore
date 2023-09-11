@@ -1,3 +1,4 @@
 .env
 /todos
 /.vscode
+__pycache__
