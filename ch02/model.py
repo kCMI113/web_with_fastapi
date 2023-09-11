@@ -14,3 +14,11 @@ class Todo(BaseModel):
 class TodoSimple(BaseModel):
     id: int
     item: str
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "id": 1,
+                "item": "Example Schema ~_~"
+            }
+        }
