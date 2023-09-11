@@ -1,5 +1,5 @@
-from fastapi import APIRouter
-from model import Todo, TodoSimle
+from fastapi import APIRouter, Path
+from model import Todo, TodoSimple
 
 todo_router = APIRouter()
 
@@ -7,7 +7,7 @@ todo_list = []
 
 
 @todo_router.post("/todo")
-async def add_todo(todo: TodoSimle) -> dict:
+async def add_todo(todo: TodoSimple) -> dict:
     todo_list.append(todo)
     return {
         "msg": "Todo added successfully!"
@@ -22,7 +22,7 @@ async def retrive_todos() -> dict:
 
 
 @todo_router.get("/todo/{todo_id}")
-async def get_single_todo(todo_id: int):
+async def get_single_todo(todo_id: int = Path(..., title="The ID of the todo to retrieve")) -> dict:
     for todo in todo_list:
         if todo.id == todo_id:
             return {
