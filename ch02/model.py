@@ -9,3 +9,8 @@ class Item(BaseModel):
 class Todo(BaseModel):
     id: int
     item: Item
+
+
+class TodoSimple(BaseModel):
+    id: int
+    item: str
