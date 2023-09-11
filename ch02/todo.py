@@ -46,3 +46,11 @@ async def update_todo(todo_data: TodoItem, todo_id: int = Path(..., title="The I
     return {
         "msg": "error - no id"
     }
+
+
+@todo_router.delete("/todo")
+async def delete_all_todo() -> dict:
+    todo_list.clear()
+    return {
+        "msg": "Todos deleted successfully"
+    }
