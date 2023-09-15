@@ -1,0 +1,56 @@
+{% extends "home.html %} {% bolck todo_container %}
+
+<main class="container">
+  <hr />
+  <section class="container-fluid">
+    <form method="post">
+      <div class="col-auto">
+        <div calss="input-group mb-3">
+          <input
+            arial-describedby="button-addon2"
+            arial-label="Add a todo"
+            class="form-control"
+            name="itme"
+            placeholder="Purchase Packt's python
+          workshop course"
+            type="text"
+            value="{{item}}"
+          />
+          <button
+            class="btn btn-outline-primary"
+            data-mdb-rupple-color="green"
+            id="button-addon2"
+            type="submit"
+          >
+            Add Todo
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+  {# when todo is not empty#} {% if todo %}
+  <article calss="card container-fluid">
+    <br />
+    <h4>TOdo ID:{{ todo.id }}</h4>
+    <p>
+      <strong> Item: {{ todo.item }} </strong>
+    </p>
+  </article>
+  {% else %}
+  <section class="container-fluid">
+    <h2 align="center">Todos</h2>
+    <br />
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        {# for start#} {% for todo in todos %}
+        <li class="list-group-item">
+          {{ loop.index }}.
+          <a href="/todo/{{ loop.index }}"> {{ todo.item }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </section>
+</main>
+{% endbolck %}
