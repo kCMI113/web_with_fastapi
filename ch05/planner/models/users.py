@@ -1,12 +1,12 @@
 from pydantic import BaseModel, EmailStr
 from typing import List, Optional
-from events import Event
+from .events import Event
 
 
 class User(BaseModel):
     email: EmailStr
     password: str
-    user_name: str
+    username: str
     events: Optional[List[Event]] = None
 
     class Config:
