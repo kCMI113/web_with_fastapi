@@ -48,7 +48,7 @@ async def delete_event(id: int) -> dict:
 
 @event_router.delete("/")
 async def delete_all_events() -> dict:
-    events = []
+    events.clear()
     return {
         "msg": "Events deleted successfully."
     }
