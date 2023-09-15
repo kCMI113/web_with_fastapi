@@ -25,3 +25,17 @@ async def create_event(body: Event = Body(...)) -> dict:
     return {
         "msg": "Event created successfully."
     }
+
+
+@event_router.delete("/{id}")
+async def delete_event(id: int) -> dict:
+    for event in events:
+        if event.id == id:
+            events.remove(event)
+            return {
+                "msg": "Event deleted successfully."
+            }
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail="Event with supplied ID does not exist"
+    )
