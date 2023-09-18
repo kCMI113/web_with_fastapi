@@ -60,3 +60,23 @@ async def delete_all_events() -> dict:
     return {
         "msg": "Events deleted successfully."
     }
+
+
+@event_router.put("/edit/{id}", response_model=Event)
+async def update_event(id: int, new_data: EventUpdate, session=Depends(get_session)) -> Event:
+    event = session.get(Event, id)
+
+    if event:
+        event_data = new_data.dict(exclude_unset=True)
+        for key, val in event_data.items():
+            setattr(event, key, val)
+        session.add(event)
+        session.commit()
+        session.refresh(event)
+
+        return event
+
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail="Event with supplied ID does not exist"
+    )
